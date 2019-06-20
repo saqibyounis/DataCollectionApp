@@ -32,7 +32,7 @@
             android:padding="10dp"
             android:text="Welcome To Data Collection App"
             android:textAllCaps="true"
-            android:textColor="#BD7E23"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp" />
 
         <EditText
@@ -68,9 +68,9 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:foregroundGravity="center"
-            android:text="L o g i n"
             android:onClick="login"
-            android:textColor="#BD7E23" />
+            android:text="L o g i n"
+            android:textColor="@color/colorPrimaryDark" />
 
     </LinearLayout>
 </RelativeLayout>

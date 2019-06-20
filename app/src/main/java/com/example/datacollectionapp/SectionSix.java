@@ -20,24 +20,25 @@ import com.example.datacollectionapp.model.FormDataModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SectionFive extends AppCompatActivity {
+public class SectionSix extends AppCompatActivity {
     Spinner job1,job2;
+    int tempid;
 
     List<String> jobgroups;
     private ArrayAdapter<String> jobadaptder;
-    int tempid;
 
     private static final int CAMERA_REQUEST = 1888;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
     private Bitmap tempBitmap;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_section_five);
-      job1=findViewById(R.id.job1);
-      job2=findViewById(R.id.job2);
-         jobgroups=new ArrayList<>();
+        setContentView(R.layout.activity_section_six);
+
+        job1=findViewById(R.id.job1);
+  jobgroups=new ArrayList<>();
         jobgroups.add("B");
         jobgroups.add("C");
         jobgroups.add("D");
@@ -51,47 +52,7 @@ public class SectionFive extends AppCompatActivity {
         jobgroups.add("L");
         jobadaptder=new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,jobgroups);
         job1.setAdapter(jobadaptder);
-        job2.setAdapter(jobadaptder);
 
-
-    }
-    public void next(View view){
-        startActivity(new Intent(this,SectionSix.class));
-
-    }
-
-
-    public void eDetails(View view){
-        tempid=1;
-        captureImage();
-
-    }
-
-    public void permotion(View view){
-        tempid=2;
-        captureImage();
-
-
-    }
-
-
-    public void payslip1(View view){
-        tempid=3;
-        captureImage();
-
-
-    }
-
-    public void payslip2(View view){
-        tempid=4;
-        captureImage();
-
-
-    }
-
-    public void payslip3(View view){
-        tempid=5;
-captureImage();
 
     }
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -110,7 +71,6 @@ captureImage();
 
 
     }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
     {
@@ -140,36 +100,18 @@ captureImage();
 
             if(tempid==1){
 
-                FormDataModel.employeedetail=tempBitmap;
+                FormDataModel.appointmentletter=tempBitmap;
                 Toast.makeText(this, "Picature added", Toast.LENGTH_SHORT).show();
-
-            }else if(tempid==2){
-
-                FormDataModel.promotion=tempBitmap;
-
-                Toast.makeText(this, "Picture added", Toast.LENGTH_SHORT).show();
-
-            }else if(tempid==3){
-                FormDataModel.slip1=tempBitmap;
-                Toast.makeText(this, "Picture added", Toast.LENGTH_SHORT).show();
-
-
-
-            }else if(tempid==4){
-                FormDataModel.slip2=tempBitmap;
-                Toast.makeText(this, "Picture added", Toast.LENGTH_SHORT).show();
-
-
-
-            }else if(tempid==5){
-                FormDataModel.slip3=tempBitmap;
-                Toast.makeText(this, "Picture added", Toast.LENGTH_SHORT).show();
-
-
 
             }
         }
     }
 
+    public void takepicture(View view){
+        tempid=1;
+        captureImage();
+
+
+    }
 
 }
