@@ -12,9 +12,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.datacollectionapp.model.FormData;
 import com.example.datacollectionapp.model.FormDataModel;
 
 import java.util.ArrayList;
@@ -26,7 +30,9 @@ public class SectionFive extends AppCompatActivity {
     List<String> jobgroups;
     private ArrayAdapter<String> jobadaptder;
     int tempid;
-
+    EditText eddesignation,ededate,pdesignation,pedate;
+    CheckBox permanent,ecd,casual,temporary,contract,intern;
+        Button dbtn,pbtn,ps1btn,ps2btn,ps3btn;
     private static final int CAMERA_REQUEST = 1888;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
     private Bitmap tempBitmap;
@@ -37,7 +43,27 @@ public class SectionFive extends AppCompatActivity {
         setContentView(R.layout.activity_section_five);
       job1=findViewById(R.id.job1);
       job2=findViewById(R.id.job2);
-         jobgroups=new ArrayList<>();
+      dbtn=findViewById(R.id.ebtn);
+      pbtn=findViewById(R.id.pbtn);
+      ps1btn=findViewById(R.id.ps1btn);
+      ps2btn=findViewById(R.id.ps2btn);
+      ps3btn=findViewById(R.id.ps3btn);
+       permanent=findViewById(R.id.permanent);
+       ecd=findViewById(R.id.ecd);
+       casual=findViewById(R.id.casual);
+       temporary=findViewById(R.id.temporary);
+       contract=findViewById(R.id.contract);
+       intern=findViewById(R.id.intern);
+
+       eddesignation=findViewById(R.id.designation);
+        ededate=findViewById(R.id.efectivedate1);
+
+        pdesignation=findViewById(R.id.designation2);
+        pedate=findViewById(R.id.efectivedate2);
+
+
+
+        jobgroups=new ArrayList<>();
         jobgroups.add("B");
         jobgroups.add("C");
         jobgroups.add("D");
@@ -56,6 +82,37 @@ public class SectionFive extends AppCompatActivity {
 
     }
     public void next(View view){
+
+        if(FormDataModel.employeedetail!=null && FormDataModel.promotion!=null && FormDataModel.slip1!=null && FormDataModel.slip2!=null && FormDataModel.slip3!=null )
+
+        FormDataModel.formData.setEmployeDetailDesignation(eddesignation.getText().toString());
+        FormDataModel.formData.setEmployeDetailEffectiveDate(ededate.getText().toString());
+
+        FormDataModel.formData.setPermotionDesignation(pdesignation.getText().toString());
+
+        FormDataModel.formData.setPermotionEffectiveDate(pedate.getText().toString());
+
+        if(casual.isChecked())
+        FormDataModel.formData.setCasual("Yes");
+
+        if(temporary.isChecked())
+            FormDataModel.formData.setTemporary("Yes");
+
+        if(ecd.isChecked())
+            FormDataModel.formData.setEcd("Yes");
+
+        if(contract.isChecked())
+            FormDataModel.formData.setContract("Yes");
+
+        if(intern.isChecked())
+            FormDataModel.formData.setIntern("Yes");
+
+
+        if(permanent.isChecked())
+            FormDataModel.formData.setPermanent("Yes");
+
+
+
         startActivity(new Intent(this,SectionSix.class));
 
     }
@@ -142,16 +199,18 @@ captureImage();
 
                 FormDataModel.employeedetail=tempBitmap;
                 Toast.makeText(this, "Picature added", Toast.LENGTH_SHORT).show();
-
+                 dbtn.setBackgroundColor(getResources().getColor(R.color.colorSuccess));
             }else if(tempid==2){
 
                 FormDataModel.promotion=tempBitmap;
 
                 Toast.makeText(this, "Picture added", Toast.LENGTH_SHORT).show();
+                pbtn.setBackgroundColor(getResources().getColor(R.color.colorSuccess));
 
             }else if(tempid==3){
                 FormDataModel.slip1=tempBitmap;
                 Toast.makeText(this, "Picture added", Toast.LENGTH_SHORT).show();
+                ps1btn.setBackgroundColor(getResources().getColor(R.color.colorSuccess));
 
 
 
@@ -159,11 +218,13 @@ captureImage();
                 FormDataModel.slip2=tempBitmap;
                 Toast.makeText(this, "Picture added", Toast.LENGTH_SHORT).show();
 
+                ps2btn.setBackgroundColor(getResources().getColor(R.color.colorSuccess));
 
 
             }else if(tempid==5){
                 FormDataModel.slip3=tempBitmap;
                 Toast.makeText(this, "Picture added", Toast.LENGTH_SHORT).show();
+                ps3btn.setBackgroundColor(getResources().getColor(R.color.colorSuccess));
 
 
 

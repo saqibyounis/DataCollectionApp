@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1045852821283",
+    "firebase_url": "https://datacollectionapp-9beaf.firebaseio.com",
+    "project_id": "datacollectionapp-9beaf",
+    "storage_bucket": "datacollectionapp-9beaf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1045852821283:android:d92220e20121f47d",
+        "android_client_info": {
+          "package_name": "com.example.datacollectionapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1045852821283-tk9vshd8etgodfr3q91idmr23bsp97rp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.datacollectionapp",
+            "certificate_hash": "8c1cd1eff4d5e8f875fc461ab49132772bb350bb"
+          }
+        },
+        {
+          "client_id": "1045852821283-nhs7geboash9kr3hosv8qembd2mm2cmi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8vU5v6wjxFuNFMkSBr_lrbUQtUvhxJ1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1045852821283-nhs7geboash9kr3hosv8qembd2mm2cmi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
