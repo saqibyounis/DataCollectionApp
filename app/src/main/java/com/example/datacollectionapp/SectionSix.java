@@ -151,7 +151,7 @@ public class SectionSix extends AppCompatActivity {
 public void finish(View view){
 
 
-        if(FormDataModel.appointmentletter!=null){
+       /// if(FormDataModel.appointmentletter!=null){
     progressDialog = new ProgressDialog(this);
     progressDialog.setMessage("Uploain information to server please wait..");
         progressDialog.setTitle("Uploading");
@@ -214,13 +214,13 @@ public void finish(View view){
     });
 
 
-        }else{
+       /* }else{
 
             Toast.makeText(this, "Some fields are empty", Toast.LENGTH_SHORT).show();
 
         }
 
-
+*/
 
 
 

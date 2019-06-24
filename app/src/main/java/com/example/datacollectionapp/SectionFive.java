@@ -83,7 +83,9 @@ public class SectionFive extends AppCompatActivity {
     }
     public void next(View view){
 
+/*
         if(FormDataModel.employeedetail!=null && FormDataModel.promotion!=null && FormDataModel.slip1!=null && FormDataModel.slip2!=null && FormDataModel.slip3!=null )
+*/
 
         FormDataModel.formData.setEmployeDetailDesignation(eddesignation.getText().toString());
         FormDataModel.formData.setEmployeDetailEffectiveDate(ededate.getText().toString());

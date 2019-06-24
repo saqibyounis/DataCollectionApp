@@ -210,12 +210,14 @@ gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
         FormDataModel.formData.setDob(dobf.getText().toString());
         FormDataModel.formData.setFullname(fname.getText().toString());
         //if(FormDataModel.formData.getIdNumber().isEmpty() && )
+/*
          if(FormDataModel.dob!=null && FormDataModel.profile!=null && FormDataModel.id!=null ) {
+*/
              startActivity(new Intent(this, SectionThree.class));
-         }else {
+        /* }else {
              Toast.makeText(this, "Some fields are empty", Toast.LENGTH_SHORT).show();
 
-         }
+         }*/
     }
 @RequiresApi(api = Build.VERSION_CODES.M)
 public void idCapture(View view){

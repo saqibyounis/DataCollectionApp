@@ -151,12 +151,13 @@ public class SectionThree extends AppCompatActivity {
         FormDataModel.formData.setTown(town.getText().toString());
         FormDataModel.formData.setPostalCode(postacode.getText().toString());
 
-        if(FormDataModel.acadamic1!=null &&FormDataModel.acadamic2!=null &&FormDataModel.acadamic3!=null&&FormDataModel.acadamic4!=null&&FormDataModel.otheres1!=null&&FormDataModel.otheres2!=null&&FormDataModel.otheres3!=null&&FormDataModel.otheres4!=null &&FormDataModel.professional1!=null&&FormDataModel.professional3!=null&&FormDataModel.professional3!=null&&FormDataModel.professional4!=null) {
-            startActivity(new Intent(this, SectionFive.class));
-        }else{
+     /*   if(FormDataModel.acadamic1!=null &&FormDataModel.acadamic2!=null &&FormDataModel.acadamic3!=null&&FormDataModel.acadamic4!=null&&FormDataModel.otheres1!=null&&FormDataModel.otheres2!=null&&FormDataModel.otheres3!=null&&FormDataModel.otheres4!=null &&FormDataModel.professional1!=null&&FormDataModel.professional3!=null&&FormDataModel.professional3!=null&&FormDataModel.professional4!=null) {
+     */
+     startActivity(new Intent(this, SectionFive.class));
+   /*     }else{
             Toast.makeText(this, "Some fields are empty", Toast.LENGTH_SHORT).show();
 
-        }
+        }*/
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
