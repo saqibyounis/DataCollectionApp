@@ -29,6 +29,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.errorprone.annotations.FormatMethod;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -226,7 +227,7 @@ public void finish(View view){
 
 }
 public void uploaddob(){
-
+if(FormDataModel.dob!=null){
     FormDataModel.dob.compress(Bitmap.CompressFormat.JPEG, 100, baos);
     data=baos.toByteArray();
     final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"dobimage.jpg");
@@ -245,12 +246,15 @@ public void uploaddob(){
 
             }
         }
-    });
+    });}else{
+    uploada1();
+
+}
 
 }
 
 public void uploada1(){
-
+if(FormDataModel.acadamic1!=null){
     FormDataModel.acadamic1.compress(Bitmap.CompressFormat.JPEG, 100, baos);
     data=baos.toByteArray();
     final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"acadamic1.jpg");
@@ -270,11 +274,14 @@ public void uploada1(){
             }
         }
     });
-
+}else{                    uploada2();
+}
 
 }
 
     public void uploada2(){
+        if(FormDataModel.acadamic2!=null){
+
         FormDataModel.acadamic2.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
         final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"acadamic2.jpg");
@@ -294,12 +301,18 @@ public void uploada1(){
                 }
             }
         });
+        }else{
+            uploada3();
 
+
+        }
 
 
     }
 
     public void uploada3(){
+        if(FormDataModel.acadamic3!=null){
+
         FormDataModel.acadamic3.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
         final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"acadamic3.jpg");
@@ -320,10 +333,12 @@ public void uploada1(){
             }
         });
 
-
+        }else{                    uploada4();
+        }
     }
 
     public void uploada4(){
+        if(FormDataModel.acadamic4!=null){
 
         FormDataModel.acadamic4.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
@@ -344,11 +359,13 @@ public void uploada1(){
                 }
             }
         });
-
+        }else{                    uploado1();
+        }
 
     }
 
     public void uploado1(){
+        if(FormDataModel.otheres1!=null){
         FormDataModel.otheres1.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
         final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"other1.jpg");
@@ -368,12 +385,17 @@ public void uploada1(){
                 }
             }
         });
+        }else{
+
+            uploado2();
+
+        }
 
 
     }
 
     public void uploado2(){
-
+        if(FormDataModel.otheres2!=null){
         FormDataModel.otheres2.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
         final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"other2.jpg");
@@ -394,11 +416,18 @@ public void uploada1(){
             }
         });
 
+        }else{
+
+            uploado3();
+
+        }
 
 
     }
 
     public void uploado3(){
+        if(FormDataModel.otheres3!=null){
+
         FormDataModel.otheres3.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
         final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"other3.jpg");
@@ -419,12 +448,17 @@ public void uploada1(){
             }
         });
 
+        }else{
 
+            uploado4();
+
+        }
 
 
     }
 
     public void uploado4(){
+        if(FormDataModel.otheres4!=null){
 
         FormDataModel.otheres4.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
@@ -446,11 +480,16 @@ public void uploada1(){
             }
         });
 
+        }else{
+            uploadp1();
 
+
+        }
 
     }
 
     public void uploadp1(){
+        if(FormDataModel.professional1!=null){
 
         FormDataModel.professional1.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
@@ -471,11 +510,16 @@ public void uploada1(){
                 }
             }
         });
+        }else{
+            uploadp2();
 
+
+        }
 
     }
 
     public void uploadp2(){
+        if(FormDataModel.professional2!=null){
 
         FormDataModel.professional2.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
@@ -496,11 +540,14 @@ public void uploada1(){
                 }
             }
         });
-
+        }else{                    uploadp3();
+        }
 
     }
 
     public void uploadp3(){
+        if(FormDataModel.professional3!=null){
+
         FormDataModel.professional3.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
         final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"professional3.jpg");
@@ -520,11 +567,16 @@ public void uploada1(){
                 }
             }
         });
+        }else{
+            uploadp4();
 
+
+        }
 
     }
 
     public void uploadp4(){
+        if(FormDataModel.professional4!=null){
 
         FormDataModel.professional4.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
@@ -546,10 +598,15 @@ public void uploada1(){
             }
         });
 
+        }else{
+            uploadid();
 
+
+        }
 
     }
     public void uploadid(){
+        if(FormDataModel.id!=null){
 
         FormDataModel.id.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
@@ -570,12 +627,17 @@ public void uploada1(){
                 }
             }
         });
+        }else{
 
+            uploadedtail();
+
+        }
 
     }
 
     public void uploadedtail(){
 
+        if(FormDataModel.employeedetail!=null){
 
         FormDataModel.employeedetail.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
@@ -596,10 +658,16 @@ public void uploada1(){
                 }
             }
         });
+        }else{
 
+            uploadpromotional();
+
+        }
 
     }
     public void  uploadpromotional(){
+        if(FormDataModel.promotion!=null){
+
         FormDataModel.promotion.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
         final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"promotiondetails.jpg");
@@ -618,11 +686,16 @@ public void uploada1(){
 
                 }
             }
-        });
+        });}else{
+            uploadpayslip1();
+
+
+        }
 
 
     }
     public void uploadpayslip1(){
+        if(FormDataModel.slip1!=null){
 
         FormDataModel.slip1.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
@@ -643,11 +716,13 @@ public void uploada1(){
                 }
             }
         });
-
+        }else{                    uploadpayslip2();
+        }
 
 
     }
     public void uploadpayslip2(){
+        if(FormDataModel.slip2!=null){
 
         FormDataModel.slip2.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
@@ -668,9 +743,15 @@ public void uploada1(){
                 }
             }
         });
+        }else{
+            uploadpayslip3();
 
+
+        }
     }
     public void uploadpayslip3(){
+        if(FormDataModel.slip3!=null){
+
         FormDataModel.slip3.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
         final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"payslip3.jpg");
@@ -690,9 +771,11 @@ public void uploada1(){
                 }
             }
         });
-
+        }else{                    uploadappointmentletter();
+        }
     }
     public void uploadappointmentletter(){
+        if(FormDataModel.appointmentletter!=null){
 
         FormDataModel.appointmentletter.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
@@ -712,7 +795,8 @@ public void uploada1(){
                 }
             }
         });
-
+        }else{                   uploadFormdata();
+        }
 
 
 
