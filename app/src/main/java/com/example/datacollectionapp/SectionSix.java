@@ -38,6 +38,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -158,7 +159,7 @@ public void finish(View view){
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setCancelable(false);
         progressDialog.show();
-    if(FormDataModel.appointmentletter!=null){
+    if(FormDataModel.profile!=null){
 
         FormDataModel.formData.setCurrentDuities(currdentdDuties.getText().toString());
     FormDataModel.formData.setCurrentJob(jobgroups.get(job1.getSelectedItemPosition()));
@@ -167,7 +168,7 @@ public void finish(View view){
 
     storageReference = FirebaseStorage.getInstance().getReference();
 
-    final StorageReference profileimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"profileimage.jpg");
+    final StorageReference profileimagestorageref=storageReference.child(FormDataModel.formData.getPersonalNumber()+"/"+"profileimage.jpg");
     baos = new ByteArrayOutputStream();
     FormDataModel.profile.compress(Bitmap.CompressFormat.JPEG, 100, baos);
 
@@ -175,10 +176,10 @@ public void finish(View view){
 
 
     uploadTask = profileimagestorageref.putBytes(data);
-    uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-        @Override
-        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-            if (!task.isSuccessful()) {
+        uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+            @Override
+            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                if (!task.isSuccessful()) {
                 throw task.getException();
             }
 
@@ -192,19 +193,6 @@ public void finish(View view){
                            Uri result = task.getResult();
                            FormDataModel.formData.setProfileimageurl(result.toString());
                           uploaddob();
-
-
-
-
-
-
-
-
-
-
-
-
-
                        }else{
                            progressDialog.dismiss();
                            Toast.makeText(SectionSix.this, "Error accured", Toast.LENGTH_SHORT).show();
@@ -218,8 +206,7 @@ public void finish(View view){
 
         }else{
 
-        uploaddob();
-
+uploaddob();
         }
 
 
@@ -231,17 +218,19 @@ public void uploaddob(){
 if(FormDataModel.dob!=null){
     FormDataModel.dob.compress(Bitmap.CompressFormat.JPEG, 100, baos);
     data=baos.toByteArray();
-    final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"dobimage.jpg");
-    uploadTask=dobimagestorageref.putBytes(data);
-    uploadTask.continueWith(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+    final StorageReference dobimagestorageref=storageReference.child(FormDataModel.formData.getPersonalNumber()+"/"+"dobimage.jpg");
+    uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
         @Override
         public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-            return  dobimagestorageref.getDownloadUrl();
+            if (!task.isSuccessful()) {
+                throw task.getException();
+            }return  dobimagestorageref.getDownloadUrl();
         }
-    }).addOnCompleteListener(new OnCompleteListener<Task<Uri>>() {
+    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
         @Override
-        public void onComplete(@NonNull Task<Task<Uri>> task) {
+        public void onComplete(@NonNull Task<Uri> task) {
             if(task.isSuccessful()){
+                Uri result = task.getResult();
                 FormDataModel.formData.setDobcertificate(task.getResult().toString());
                 uploada1();
 
@@ -258,7 +247,7 @@ public void uploada1(){
 if(FormDataModel.acadamic1!=null){
     FormDataModel.acadamic1.compress(Bitmap.CompressFormat.JPEG, 100, baos);
     data=baos.toByteArray();
-    final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"acadamic1.jpg");
+    final StorageReference dobimagestorageref=storageReference.child(FormDataModel.formData.getPersonalNumber()+"/"+"acadamic1.jpg");
     uploadTask=dobimagestorageref.putBytes(data);
     uploadTask.continueWith(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
         @Override
@@ -285,7 +274,7 @@ if(FormDataModel.acadamic1!=null){
 
         FormDataModel.acadamic2.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
-        final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"acadamic2.jpg");
+        final StorageReference dobimagestorageref=storageReference.child(FormDataModel.formData.getPersonalNumber()+"/"+"acadamic2.jpg");
         uploadTask=dobimagestorageref.putBytes(data);
         uploadTask.continueWith(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
@@ -316,7 +305,7 @@ if(FormDataModel.acadamic1!=null){
 
         FormDataModel.acadamic3.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
-        final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"acadamic3.jpg");
+        final StorageReference dobimagestorageref=storageReference.child(FormDataModel.formData.getPersonalNumber()+"/"+"acadamic3.jpg");
         uploadTask=dobimagestorageref.putBytes(data);
         uploadTask.continueWith(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
@@ -343,7 +332,7 @@ if(FormDataModel.acadamic1!=null){
 
         FormDataModel.acadamic4.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
-        final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"acadamic4.jpg");
+        final StorageReference dobimagestorageref=storageReference.child(FormDataModel.formData.getPersonalNumber()+"/"+"acadamic4.jpg");
         uploadTask=dobimagestorageref.putBytes(data);
         uploadTask.continueWith(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
@@ -369,7 +358,7 @@ if(FormDataModel.acadamic1!=null){
         if(FormDataModel.otheres1!=null){
         FormDataModel.otheres1.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
-        final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"other1.jpg");
+        final StorageReference dobimagestorageref=storageReference.child(FormDataModel.formData.getPersonalNumber()+"/"+"other1.jpg");
         uploadTask=dobimagestorageref.putBytes(data);
         uploadTask.continueWith(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
@@ -399,7 +388,7 @@ if(FormDataModel.acadamic1!=null){
         if(FormDataModel.otheres2!=null){
         FormDataModel.otheres2.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
-        final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"other2.jpg");
+        final StorageReference dobimagestorageref=storageReference.child(FormDataModel.formData.getPersonalNumber()+"/"+"other2.jpg");
         uploadTask=dobimagestorageref.putBytes(data);
         uploadTask.continueWith(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
@@ -431,7 +420,7 @@ if(FormDataModel.acadamic1!=null){
 
         FormDataModel.otheres3.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
-        final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"other3.jpg");
+        final StorageReference dobimagestorageref=storageReference.child(FormDataModel.formData.getPersonalNumber()+"/"+"other3.jpg");
         uploadTask=dobimagestorageref.putBytes(data);
         uploadTask.continueWith(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
@@ -463,7 +452,7 @@ if(FormDataModel.acadamic1!=null){
 
         FormDataModel.otheres4.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
-        final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"other4.jpg");
+        final StorageReference dobimagestorageref=storageReference.child(FormDataModel.formData.getPersonalNumber()+"/"+"other4.jpg");
         uploadTask=dobimagestorageref.putBytes(data);
         uploadTask.continueWith(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
@@ -494,7 +483,7 @@ if(FormDataModel.acadamic1!=null){
 
         FormDataModel.professional1.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
-        final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"professional1.jpg");
+        final StorageReference dobimagestorageref=storageReference.child(FormDataModel.formData.getPersonalNumber()+"/"+"professional1.jpg");
         uploadTask=dobimagestorageref.putBytes(data);
         uploadTask.continueWith(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
@@ -524,7 +513,7 @@ if(FormDataModel.acadamic1!=null){
 
         FormDataModel.professional2.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
-        final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"professional2.jpg");
+        final StorageReference dobimagestorageref=storageReference.child(FormDataModel.formData.getPersonalNumber()+"/"+"professional2.jpg");
         uploadTask=dobimagestorageref.putBytes(data);
         uploadTask.continueWith(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
@@ -551,7 +540,7 @@ if(FormDataModel.acadamic1!=null){
 
         FormDataModel.professional3.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
-        final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"professional3.jpg");
+        final StorageReference dobimagestorageref=storageReference.child(FormDataModel.formData.getPersonalNumber()+"/"+"professional3.jpg");
         uploadTask=dobimagestorageref.putBytes(data);
         uploadTask.continueWith(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
@@ -581,7 +570,7 @@ if(FormDataModel.acadamic1!=null){
 
         FormDataModel.professional4.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
-        final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"professional4.jpg");
+        final StorageReference dobimagestorageref=storageReference.child(FormDataModel.formData.getPersonalNumber()+"/"+"professional4.jpg");
         uploadTask=dobimagestorageref.putBytes(data);
         uploadTask.continueWith(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
@@ -611,7 +600,7 @@ if(FormDataModel.acadamic1!=null){
 
         FormDataModel.id.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
-        final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"idcard.jpg");
+        final StorageReference dobimagestorageref=storageReference.child(FormDataModel.formData.getPersonalNumber()+"/"+"idcard.jpg");
         uploadTask=dobimagestorageref.putBytes(data);
         uploadTask.continueWith(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
@@ -642,7 +631,7 @@ if(FormDataModel.acadamic1!=null){
 
         FormDataModel.employeedetail.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
-        final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"employeedetail.jpg");
+        final StorageReference dobimagestorageref=storageReference.child(FormDataModel.formData.getPersonalNumber()+"/"+"employeedetail.jpg");
         uploadTask=dobimagestorageref.putBytes(data);
         uploadTask.continueWith(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
@@ -671,7 +660,7 @@ if(FormDataModel.acadamic1!=null){
 
         FormDataModel.promotion.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
-        final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"promotiondetails.jpg");
+        final StorageReference dobimagestorageref=storageReference.child(FormDataModel.formData.getPersonalNumber()+"/"+"promotiondetails.jpg");
         uploadTask=dobimagestorageref.putBytes(data);
         uploadTask.continueWith(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
@@ -700,7 +689,7 @@ if(FormDataModel.acadamic1!=null){
 
         FormDataModel.slip1.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
-        final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"payslip1.jpg");
+        final StorageReference dobimagestorageref=storageReference.child(FormDataModel.formData.getPersonalNumber()+"/"+"payslip1.jpg");
         uploadTask=dobimagestorageref.putBytes(data);
         uploadTask.continueWith(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
@@ -727,7 +716,7 @@ if(FormDataModel.acadamic1!=null){
 
         FormDataModel.slip2.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
-        final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"payslip2.jpg");
+        final StorageReference dobimagestorageref=storageReference.child(FormDataModel.formData.getPersonalNumber()+"/"+"payslip2.jpg");
         uploadTask=dobimagestorageref.putBytes(data);
         uploadTask.continueWith(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
@@ -755,7 +744,7 @@ if(FormDataModel.acadamic1!=null){
 
         FormDataModel.slip3.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
-        final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"payslip3.jpg");
+        final StorageReference dobimagestorageref=storageReference.child(FormDataModel.formData.getPersonalNumber()+"/"+"payslip3.jpg");
         uploadTask=dobimagestorageref.putBytes(data);
         uploadTask.continueWith(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
@@ -780,7 +769,7 @@ if(FormDataModel.acadamic1!=null){
 
         FormDataModel.appointmentletter.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         data=baos.toByteArray();
-        final StorageReference dobimagestorageref=storageReference.child(FirebaseAuth.getInstance().getCurrentUser().getEmail()+"/"+"appointmentletter.jpg");
+        final StorageReference dobimagestorageref=storageReference.child(FormDataModel.formData.getPersonalNumber()+"/"+"appointmentletter.jpg");
         uploadTask=dobimagestorageref.putBytes(data);
         uploadTask.continueWith(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
@@ -803,7 +792,7 @@ if(FormDataModel.acadamic1!=null){
 
     }
 public void uploadFormdata(){
-database.collection("User").document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).set(FormDataModel.formData);
+database.collection("User").document(FormDataModel.formData.getPersonalNumber()).set(FormDataModel.formData);
 progressDialog.dismiss();
 startActivity(new Intent(SectionSix.this,SectionOne.class));
 finish();
