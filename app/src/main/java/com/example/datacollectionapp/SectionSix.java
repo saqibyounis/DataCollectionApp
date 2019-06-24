@@ -152,13 +152,14 @@ public class SectionSix extends AppCompatActivity {
 public void finish(View view){
 
 
-       /// if(FormDataModel.appointmentletter!=null){
     progressDialog = new ProgressDialog(this);
     progressDialog.setMessage("Uploain information to server please wait..");
         progressDialog.setTitle("Uploading");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setCancelable(false);
         progressDialog.show();
+    if(FormDataModel.appointmentletter!=null){
+
         FormDataModel.formData.setCurrentDuities(currdentdDuties.getText().toString());
     FormDataModel.formData.setCurrentJob(jobgroups.get(job1.getSelectedItemPosition()));
     FormDataModel.formData.setCurrentEffectiveDate(currentedate.getText().toString());
@@ -215,13 +216,13 @@ public void finish(View view){
     });
 
 
-       /* }else{
+        }else{
 
-            Toast.makeText(this, "Some fields are empty", Toast.LENGTH_SHORT).show();
+        uploaddob();
 
         }
 
-*/
+
 
 
 
@@ -275,7 +276,7 @@ if(FormDataModel.acadamic1!=null){
         }
     });
 }else{                    uploada2();
-}
+ }
 
 }
 
