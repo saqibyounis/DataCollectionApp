@@ -32,7 +32,7 @@
             <input type="text" id="myInput" class="form-control  input-normal" onkeyup="myFunction()">
                 </div>
     <table class="table" id="myTable">
-      <tr><th>Full Name</th><th>DOB</th><th>Email</th><th>Profile Image</th><th>Personal Number</th><th>Department</th><th>Directorate</th><th>Current Job</th><th>Mobile Number</th></tr>
+      <tr><th>Full Name</th><th>DOB</th><th>Email</th><th>Profile Image</th><th>Personal Number</th><th>Department</th><th>Directorate</th><th>Current Job</th><th>Mobile Number</th><th>Station</th></tr>
     </table>
   </div>
     <script>
@@ -92,6 +92,7 @@
           var Directorate=row.insertCell(6);
           var CurrentJob= row.insertCell(7);
                               var mobileNumber=row.insertCell(8);
+                              var station=row.insertCell(9)
             var aTag = document.createElement("a");
 
             console.log(`${doc.id} =>`, doc.data());
@@ -107,6 +108,7 @@
              Department.innerHTML=info.department;
              CurrentJob.innerHTML=info.currentJob;
                               mobileNumber.innerHTML=info.mobileNumber;
+                              station.innerHTML=info.station;
 
         counter++;
         });
