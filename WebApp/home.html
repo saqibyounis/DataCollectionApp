@@ -18,12 +18,21 @@
 
     <title>Data collection App</title>
   </head>
+  
+  
   <body>
-    <h3>Data collection App </h3>
+
 
     <div class="container">
+        <h3 class="text-center" style="background-color:#D2B28E; padding:20px; color:#A24D36;">Data collection App </h3>
+
+        <div class="form-group">
+            <label for="form1">Search Department</label>
+            
+            <input type="text" id="myInput" class="form-control  input-normal" onkeyup="myFunction()">
+                </div>
     <table class="table" id="myTable">
-      <tr><th>Full Name</th><th>DOB</th><th>Email</th><th>Profile Image</th><th>Phone Number</th><th>Department</th><th>Directorate</th><th>Current Job</th></tr>
+      <tr><th>Full Name</th><th>DOB</th><th>Email</th><th>Profile Image</th><th>Personal Number</th><th>Department</th><th>Directorate</th><th>Current Job</th><th>Mobile Number</th></tr>
     </table>
   </div>
     <script>
@@ -82,7 +91,7 @@
           var Department=row.insertCell(5);
           var Directorate=row.insertCell(6);
           var CurrentJob= row.insertCell(7);
-
+                              var mobileNumber=row.insertCell(8);
             var aTag = document.createElement("a");
 
             console.log(`${doc.id} =>`, doc.data());
@@ -97,10 +106,37 @@
              Directorate.innerHTML=info.directorate;
              Department.innerHTML=info.department;
              CurrentJob.innerHTML=info.currentJob;
+                              mobileNumber.innerHTML=info.mobileNumber;
 
         counter++;
         });
     });
+    
+    
+    
+    </script>
+    <script>
+        function myFunction() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[5];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
     </script>
   </body>
 
